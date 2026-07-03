@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens — Piel Radiante                                      */
+/*  Tailwind v4: los tokens en @theme generan utilidades              */
+/*  (bg-primary, text-ink, text-accent, font-display, etc.)           */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Paleta */
+  --color-primary: #1b4332; /* verde botella — fondos oscuros, header, botones primarios */
+  --color-primary-soft: #245741; /* verde más claro — gradientes, profundidad */
+  --color-accent: #c9a84c; /* dorado/champagne — CTAs, bordes premium, iconos, hover */
+  --color-accent-soft: #dec57a; /* dorado claro — glow / hovers suaves */
+  --color-background: #f5f0e8; /* crema/beige — fondo general, tarjetas */
+  --color-surface: #ffffff; /* blanco puro — superficies, texto sobre oscuros */
+  --color-ink: #1a1a1a; /* texto principal sobre fondos claros */
+  --color-muted: #6b7280; /* texto secundario, placeholders, labels */
+
+  /* Tipografías (se inyectan vía next/font como CSS vars) */
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+
+  /* Easings de marca */
+  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Anchos de contenedor */
+  --spacing-section: 7rem;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+html {
+  /* Lenis maneja el smooth scroll; desactivamos el nativo */
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Lenis: estado mientras el smooth scroll está activo */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Tipografía display por defecto para headings semánticos grandes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Selección de texto */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-soft);
+  border-radius: 999px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utilidades de marca                                                */
+/* ------------------------------------------------------------------ */
+.text-gradient-gold {
+  background: linear-gradient(120deg, #c9a84c 0%, #dec57a 50%, #c9a84c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* Oculta elementos hasta que GSAP los revele (evita flash) */
+.reveal-hidden {
+  opacity: 0;
+}
+
+/* Fallback del Hero sin WebGL: nebulosa dorada animada (puro CSS) */
+.hero-fallback {
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(222, 197, 122, 0.7), transparent),
+    radial-gradient(2px 2px at 70% 60%, rgba(201, 168, 76, 0.65), transparent),
+    radial-gradient(1.5px 1.5px at 40% 80%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 85% 25%, rgba(222, 197, 122, 0.55), transparent),
+    radial-gradient(2px 2px at 55% 45%, rgba(201, 168, 76, 0.55), transparent);
+  background-size: 100% 100%;
+  animation: heroDrift 18s ease-in-out infinite alternate;
+}
+@keyframes heroDrift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: translate3d(-2%, -2%, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Accesibilidad — prefers-reduced-motion                             */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-hidden {
+    opacity: 1 !important;
+  }
+}
