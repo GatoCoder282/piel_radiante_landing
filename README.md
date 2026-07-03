@@ -82,6 +82,7 @@ Variables de entorno (`.env.local`):
 - `NEXT_PUBLIC_WHATSAPP_NUMBER` — **número real** de WhatsApp (formato `59170000000`)
 - `NEXT_PUBLIC_GA_ID` — Measurement ID de Google Analytics 4 (opcional)
 - `NEXT_PUBLIC_META_PIXEL_ID` — ID del Meta Pixel (opcional)
+- `NEXT_PUBLIC_SITE_URL` — URL pública del sitio para metadata y previews en Vercel
 
 Contenido a confirmar en `content/site.ts`: precios, estadísticas reales del
 contador (distribuidoras/marcas/productos) y testimonios reales.
@@ -91,3 +92,7 @@ contador (distribuidoras/marcas/productos) y testimonios reales.
 ## Deploy
 
 Pensado para **Vercel**: importar el repo, definir las env vars y desplegar.
+
+1. Importa el repositorio en Vercel.
+2. Configura `NEXT_PUBLIC_WHATSAPP_NUMBER` y, si aplica, `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID` y `NEXT_PUBLIC_SITE_URL`.
+3. Despliega con el preset de Next.js; el proyecto ya compila como contenido estático/SSR compatible con Vercel.

@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/Footer";
 import { Analytics } from "@/components/layout/Analytics";
 import { brand } from "@/content/site";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.pielradiante.bo";
+
 // Serif display de lujo (títulos) — Cormorant Garamond
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -42,7 +44,7 @@ export const metadata: Metadata = {
     "CeraVe",
     "distribuidoras autorizadas",
   ],
-  metadataBase: new URL("https://www.pielradiante.bo"),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: `${brand.name} — ${brand.tagline}`,
     description:
