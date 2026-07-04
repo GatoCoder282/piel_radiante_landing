@@ -41,19 +41,24 @@ export function ProductosTop() {
                 <LiquidImage
                   src={p.image}
                   alt={p.name}
-                  className="aspect-[4/5] w-full bg-accent-soft/20"
+                  className="aspect-[4/5] w-full bg-white"
                 />
                 <div className="flex flex-1 flex-col p-6">
                   <span className="text-xs uppercase tracking-widest text-accent">
                     {p.brand} · {p.category}
                   </span>
-                  <h3 className="mt-2 font-display text-xl text-ink">
+                  <h3 className="mt-2 font-display text-xl font-semibold leading-snug text-ink">
                     {p.name}
                   </h3>
-                  <div className="mt-5 flex items-center justify-between">
-                    <span className="font-display text-2xl text-ink">
-                      {p.price}
-                    </span>
+                  <div className="mt-5 flex items-center justify-between gap-3">
+                    <div>
+                      <span className="block font-display text-lg text-ink">
+                        {p.presentation}
+                      </span>
+                      <span className="text-xs text-muted">
+                        Precio mayorista por WhatsApp
+                      </span>
+                    </div>
                     <a
                       href={waUrl}
                       target="_blank"
@@ -61,7 +66,7 @@ export function ProductosTop() {
                       onClick={() =>
                         trackEvent("producto_whatsapp_click", { product: p.id })
                       }
-                      className="rounded-full bg-primary px-5 py-2.5 text-sm text-white transition-colors hover:bg-accent"
+                      className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm text-white transition-colors hover:bg-accent hover:text-primary"
                     >
                       Consultar
                     </a>

@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import { Button } from "@/components/ui/Button";
+import { Magnetic } from "@/components/ui/Magnetic";
 import { StatCounter } from "@/components/ui/StatCounter";
 import { useDeviceCapability } from "@/lib/useDeviceCapability";
 import { useRevealOnScroll } from "@/lib/useRevealOnScroll";
@@ -74,17 +75,25 @@ export function Programa() {
             envíos a todo el país. Pedido mínimo {brand.minOrder}.
           </p>
           <div data-reveal className="mt-9 flex flex-wrap justify-center gap-4">
+            <Magnetic>
+              <Button
+                as="a"
+                href={waUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="lg"
+                onClick={() => trackDistribuidoraCTA("programa")}
+              >
+                Empezar por WhatsApp
+              </Button>
+            </Magnetic>
             <Button
               as="a"
-              href={waUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contacto"
+              variant="outline"
               size="lg"
-              onClick={() => trackDistribuidoraCTA("programa")}
+              className="border-white/40 text-white hover:text-primary"
             >
-              Empezar por WhatsApp
-            </Button>
-            <Button as="a" href="#contacto" variant="outline" size="lg">
               Dejar mis datos
             </Button>
           </div>

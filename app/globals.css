@@ -108,6 +108,16 @@ html.lenis body {
   opacity: 0;
 }
 
+/* Marquee infinito de logos de marcas (contenido duplicado → wrap a -50%) */
+.brand-marquee {
+  animation: brandScroll 32s linear infinite;
+}
+@keyframes brandScroll {
+  to {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
 /* Fallback del Hero sin WebGL: nebulosa dorada animada (puro CSS) */
 .hero-fallback {
   background-image:

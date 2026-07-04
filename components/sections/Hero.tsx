@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import SplitType from "split-type";
 import { gsap } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
+import { Magnetic } from "@/components/ui/Magnetic";
 import { useDeviceCapability } from "@/lib/useDeviceCapability";
 import { brand } from "@/content/site";
 import { buildWhatsAppUrl, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
@@ -123,19 +124,23 @@ export function Hero() {
             </p>
 
             <div data-hero-item className="mt-10 flex flex-wrap gap-4">
-              <Button
-                as="a"
-                href={waDistribuidora}
-                target="_blank"
-                rel="noopener noreferrer"
-                size="lg"
-                onClick={() => trackDistribuidoraCTA("hero")}
-              >
-                Quiero ser distribuidora
-              </Button>
-              <Button as="a" href="#productos" variant="outline" size="lg">
-                Ver catálogo
-              </Button>
+              <Magnetic>
+                <Button
+                  as="a"
+                  href={waDistribuidora}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="lg"
+                  onClick={() => trackDistribuidoraCTA("hero")}
+                >
+                  Quiero ser distribuidora
+                </Button>
+              </Magnetic>
+              <Magnetic strength={0.2}>
+                <Button as="a" href="#productos" variant="outline" size="lg" className="border-white/40 text-white hover:text-primary">
+                  Ver catálogo
+                </Button>
+              </Magnetic>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Analytics } from "@/components/layout/Analytics";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { brand } from "@/content/site";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.pielradiante.bo";
@@ -72,6 +73,7 @@ export default function RootLayout({
       <body>
         <Analytics />
         <SmoothScroll>
+          <ScrollProgress />
           <Navbar />
           <main>{children}</main>
           <Footer />

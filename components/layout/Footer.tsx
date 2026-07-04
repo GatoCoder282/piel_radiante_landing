@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { brand, nav } from "@/content/site";
 
 export function Footer() {
@@ -7,10 +8,14 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-3">
           {/* Marca */}
           <div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent font-display text-lg font-semibold text-white">
-                R
-              </span>
+            <div className="flex items-center gap-3">
+              <Image
+                src={brand.logo}
+                alt={`Logo ${brand.name}`}
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded-full"
+              />
               <span className="font-display text-lg tracking-wide text-white">
                 PIEL RADIANTE
               </span>

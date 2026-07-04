@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
@@ -51,19 +52,19 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-        {/* Logo */}
-        <a href="#hero" className="flex items-center gap-2" aria-label={brand.name}>
+        {/* Logo real de la marca */}
+        <a href="#hero" className="flex items-center gap-3" aria-label={brand.name}>
+          <Image
+            src={brand.logo}
+            alt={`Logo ${brand.name}`}
+            width={44}
+            height={44}
+            priority
+            className="h-11 w-11 rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.18)]"
+          />
           <span
             className={cn(
-              "flex h-9 w-9 items-center justify-center rounded-full font-display text-lg font-semibold transition-colors",
-              solid ? "bg-accent text-white" : "bg-white/15 text-white backdrop-blur"
-            )}
-          >
-            R
-          </span>
-          <span
-            className={cn(
-              "font-display text-lg tracking-wide transition-colors",
+              "font-display text-lg font-semibold tracking-wide transition-colors",
               solid ? "text-ink" : "text-white"
             )}
           >

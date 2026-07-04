@@ -12,15 +12,18 @@ import { brand } from "@/content/site";
 export function QuienesSomos() {
   const ref = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
   useRevealOnScroll(ref);
 
   // Parallax sutil de la imagen al hacer scroll
   useEffect(() => {
     const el = imageRef.current;
-    if (!el) return;
+    const frame = frameRef.current;
+    if (!el || !frame) return;
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const tween = gsap.to(el, {
+      // Parallax vertical de la foto dentro de su marco
+      const parallax = gsap.to(el, {
         yPercent: -12,
         ease: "none",
         scrollTrigger: {
@@ -30,9 +33,29 @@ export function QuienesSomos() {
           scrub: true,
         },
       });
+
+      // Reveal: el marco se "descubre" con clip-path al entrar en viewport
+      const reveal = gsap.fromTo(
+        frame,
+        { clipPath: "inset(12% 8% 12% 8% round 2rem)", scale: 0.96 },
+        {
+          clipPath: "inset(0% 0% 0% 0% round 2rem)",
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: frame,
+            start: "top 90%",
+            end: "top 40%",
+            scrub: 0.5,
+          },
+        }
+      );
+
       return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
+        parallax.scrollTrigger?.kill();
+        parallax.kill();
+        reveal.scrollTrigger?.kill();
+        reveal.kill();
       };
     });
     return () => mm.revert();
@@ -86,24 +109,27 @@ export function QuienesSomos() {
           </dl>
         </div>
 
-        {/* Imagen con parallax */}
-        <div className="relative h-[480px] overflow-hidden rounded-[2rem] shadow-[0_30px_80px_rgba(26,23,20,0.18)]">
+        {/* Imagen con parallax + reveal por clip-path */}
+        <div
+          ref={frameRef}
+          className="relative h-[480px] overflow-hidden rounded-[2rem] shadow-[0_30px_80px_rgba(26,26,26,0.18)]"
+        >
           <div ref={imageRef} className="absolute inset-0 -top-12 h-[120%]">
             <Image
-              src="/about.svg"
-              alt="Distribuidora de Piel Radiante mostrando productos"
+              src="/about.jpeg"
+              alt="Únete a la red de distribuidoras de Piel Radiante"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
           </div>
-          {/* Velo dorado sutil */}
+          {/* Velo verde sutil */}
           <div
             aria-hidden
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(160deg, rgba(27,67,50,0.0) 40%, rgba(27,67,50,0.35) 100%)",
+                "linear-gradient(160deg, rgba(27,67,50,0.0) 60%, rgba(27,67,50,0.25) 100%)",
             }}
           />
         </div>

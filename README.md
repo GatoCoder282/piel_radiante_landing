@@ -65,29 +65,29 @@ public/          assets (placeholders SVG — reemplazar por reales)
 Cada efecto degrada con elegancia: sin WebGL o en móvil de gama baja se usa una
 versión CSS/imagen. Todo respeta `prefers-reduced-motion` vía `gsap.matchMedia`.
 
-## ✅ Pendientes para producción (reemplazar placeholders)
+## ✅ Assets reales integrados
 
-Los assets en `/public` son **placeholders SVG generados**. Reemplázalos por los
-reales (mismos nombres, o actualiza las rutas en `content/site.ts`):
+- `public/logo.png` — logo oficial (Navbar, Footer y favicon vía `app/icon.png`)
+- `public/about.jpeg` — imagen de la sección Nosotros
+- `public/products/*.jpeg` — 6 productos de Libra Cosmética
+- `public/brands/*.jpeg` — logos de Libra, Rouse Arey, Vital Blue y Zo-é
 
-- `public/logo.svg` — logo real de Piel Radiante
-- `public/about.svg` — foto para la sección Nosotros
-- `public/products/*.svg` — fotos reales de productos (puedes usar `.jpg`/`.png` y
-  actualizar la extensión en `content/site.ts`)
-- `public/categories/*.svg` — imágenes de categorías
-- `public/brands/*.svg` — logos oficiales de las marcas
+## 📌 Pendientes para producción
+
+- `public/categories/*.svg` siguen siendo placeholders — reemplazar por fotos
+  reales de cada categoría (y actualizar rutas en `content/site.ts`).
+- **Verificar el teléfono** en `content/site.ts` (`phoneDisplay`): el valor
+  cargado contenía un carácter inválido y se normalizó a `+591 67405100`.
 
 Variables de entorno (`.env.local`):
 
-- `NEXT_PUBLIC_WHATSAPP_NUMBER` — **número real** de WhatsApp (formato `59170000000`)
+- `NEXT_PUBLIC_WHATSAPP_NUMBER` — **número real** de WhatsApp (formato `59167405100`)
 - `NEXT_PUBLIC_GA_ID` — Measurement ID de Google Analytics 4 (opcional)
 - `NEXT_PUBLIC_META_PIXEL_ID` — ID del Meta Pixel (opcional)
 - `NEXT_PUBLIC_SITE_URL` — URL pública del sitio para metadata y previews en Vercel
 
-Contenido a confirmar en `content/site.ts`: precios, estadísticas reales del
-contador (distribuidoras/marcas/productos) y testimonios reales.
-
-> Regenerar placeholders: `node scripts/gen-placeholders.mjs`
+Contenido a confirmar en `content/site.ts`: estadísticas reales del contador
+(distribuidoras/productos) y testimonios reales.
 
 ## Deploy
 

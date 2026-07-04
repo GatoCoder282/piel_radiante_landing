@@ -14,8 +14,9 @@ export const brand = {
   instagram: "@pielradiante.distribuidora",
   instagramUrl: "https://instagram.com/pielradiante.distribuidora",
   email: "info@pielradiante.bo",
-  phoneDisplay: "+591 700 00000",
+  phoneDisplay: "+591 67405100", // TODO: verificar número (el original tenía un carácter inválido)
   minOrder: "Bs. 300",
+  logo: "/logo.png",
 } as const;
 
 export const nav = [
@@ -30,8 +31,8 @@ export const nav = [
 
 export const stats = [
   { value: 500, suffix: "+", label: "Distribuidoras activas" },
-  { value: 8, suffix: "", label: "Marcas autorizadas" },
-  { value: 1200, suffix: "+", label: "Productos en catálogo" },
+  { value: 4, suffix: "", label: "Marcas autorizadas" },
+  { value: 100, suffix: "+", label: "Productos en catálogo" },
   { value: 72, suffix: "h", label: "Envíos a todo el país" },
 ] as const;
 
@@ -105,75 +106,72 @@ export interface Product {
   name: string;
   brand: string;
   category: string;
-  price: string;
-  image: string; // /public/products/*.jpg (placeholder si falta)
+  /** Presentación/tamaño visible en la tarjeta (el precio se consulta por WhatsApp). */
+  presentation: string;
+  image: string; // /public/products/*
 }
 
 export const featuredProducts: Product[] = [
   {
-    id: "serum-vichy",
-    name: "Sérum Facial Mineral 89",
-    brand: "Vichy",
+    id: "acido-salicilico-libra",
+    name: "Loción Ácido Salicílico 2% + Niacinamida 3%",
+    brand: "Libra Cosmética",
     category: "Skin Care",
-    price: "Bs. 210",
-    image: "/products/serum.svg",
+    presentation: "500 ml",
+    image: "/products/acido-salicilico-libra.jpeg",
   },
   {
-    id: "crema-cerave",
-    name: "Crema Hidratante Regeneradora",
-    brand: "CeraVe",
+    id: "colageno-libra",
+    name: "Sérum Collagen — Therapy N°04",
+    brand: "Libra Cosmética",
     category: "Skin Care",
-    price: "Bs. 165",
-    image: "/products/crema.svg",
+    presentation: "50 ml",
+    image: "/products/colageno-libra.jpeg",
   },
   {
-    id: "base-maybelline",
-    name: "Base Líquida Fit Me",
-    brand: "Maybelline",
-    category: "Maquillaje",
-    price: "Bs. 95",
-    image: "/products/base.svg",
-  },
-  {
-    id: "labial-loreal",
-    name: "Labial Matte Color Riche",
-    brand: "L'Oréal Paris",
-    category: "Maquillaje",
-    price: "Bs. 80",
-    image: "/products/labial.svg",
-  },
-  {
-    id: "agua-larocheposay",
-    name: "Agua Micelar Ultra",
-    brand: "La Roche-Posay",
+    id: "vitamina-c-libra",
+    name: "Booster C Vitamin — Therapy N°08",
+    brand: "Libra Cosmética",
     category: "Skin Care",
-    price: "Bs. 140",
-    image: "/products/micelar.svg",
+    presentation: "50 ml",
+    image: "/products/vitamina-c-libra.jpeg",
   },
   {
-    id: "shampoo-garnier",
-    name: "Shampoo Reparador",
-    brand: "Garnier",
-    category: "Capilar",
-    price: "Bs. 70",
-    image: "/products/shampoo.svg",
+    id: "gel-multitask-libra",
+    name: "Gel Mask Multi C — Renovador Celular",
+    brand: "Libra Cosmética",
+    category: "Skin Care",
+    presentation: "Pote profesional",
+    image: "/products/gel-multitask-libra.jpeg",
+  },
+  {
+    id: "tensor-colageno-libra",
+    name: "Velo de Colágeno Hidrolizado",
+    brand: "Libra Cosmética",
+    category: "Skin Care",
+    presentation: "Pote profesional",
+    image: "/products/tensor-colageno-libra.jpeg",
+  },
+  {
+    id: "gel-descongestivo-libra",
+    name: "Gel Descongestivo — Uso Profesional",
+    brand: "Libra Cosmética",
+    category: "Skin Care",
+    presentation: "Pote profesional",
+    image: "/products/gel-descongestivo-libra.jpeg",
   },
 ];
 
 export interface BrandLogo {
   name: string;
-  logo: string; // /public/brands/*.svg
+  logo: string; // /public/brands/*
 }
 
 export const brandLogos: BrandLogo[] = [
-  { name: "La Roche-Posay", logo: "/brands/la-roche-posay.svg" },
-  { name: "Vichy", logo: "/brands/vichy.svg" },
-  { name: "Maybelline", logo: "/brands/maybelline.svg" },
-  { name: "CeraVe", logo: "/brands/cerave.svg" },
-  { name: "Revlon", logo: "/brands/revlon.svg" },
-  { name: "L'Oréal Paris", logo: "/brands/loreal.svg" },
-  { name: "Garnier", logo: "/brands/garnier.svg" },
-  { name: "elf", logo: "/brands/elf.svg" },
+  { name: "Libra Cosmética", logo: "/brands/libra.jpeg" },
+  { name: "Rouse Arey — Cosmética Natural", logo: "/brands/rouse-arey.jpeg" },
+  { name: "Vital Blue", logo: "/brands/vital-blue.jpeg" },
+  { name: "Zo-é Biocosmética", logo: "/brands/zoe.jpeg" },
 ];
 
 export interface Testimonial {
